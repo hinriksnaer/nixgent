@@ -1,0 +1,30 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugins": ["-opencode.provider.vllm"],
+  "provider": {
+    "vllm-local": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "vllm-local",
+      "options": {
+        "baseURL": "http://127.0.0.1:8000/v1"
+      },
+      "models": {
+        "qwen3.6-27b": {
+          "name": "qwen3.6-27b",
+          "reasoning": true,
+          "tool_call": true,
+          "limit": {
+            "context": 32768,
+            "output": 8192
+          }
+        }
+      }
+    }
+  },
+  "mcp": {
+    "nixos": {
+      "type": "local",
+      "command": ["nix", "run", "github:utensils/mcp-nixos", "--"]
+    }
+  }
+}
